@@ -1,3 +1,78 @@
+<!--<!DOCTYPE html>-->
+<!--<html>-->
+<!--<head>-->
+<!--    <title>Subinventory Data</title>-->
+<!--    <style>-->
+<!--        body {-->
+<!--            font-family: Arial, sans-serif;-->
+<!--            background-color: #f4f4f9;-->
+<!--            margin: 0;-->
+<!--            padding: 0;-->
+<!--            display: flex;-->
+<!--            justify-content: center;-->
+<!--            align-items: center;-->
+<!--            height: 100vh;-->
+<!--            flex-direction: column;-->
+<!--        }-->
+<!--        h1 {-->
+<!--            margin-bottom: 20px;-->
+<!--        }-->
+<!--        table {-->
+<!--            width: 80%;-->
+<!--            max-width: 800px;-->
+<!--            margin: 20px auto;-->
+<!--            border-collapse: collapse;-->
+<!--            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);-->
+<!--            background-color: #fff;-->
+<!--            border-radius: 8px;-->
+<!--            overflow: hidden;-->
+<!--            border: 1px solid black; /* Add border to the whole table */-->
+<!--        }-->
+<!--        th, td {-->
+<!--            padding: 15px;-->
+<!--            text-align: left;-->
+<!--            border-bottom: 1px solid #ddd;-->
+<!--            border-right: 1px solid black; /* Add this line for black border */-->
+<!--            border-left: 1px solid black; /* Add this line for black border */-->
+<!--        }-->
+<!--        th {-->
+<!--            background-color: #007BFF;-->
+<!--            color: white;-->
+<!--            text-transform: uppercase;-->
+<!--            letter-spacing: 0.1em;-->
+<!--        }-->
+<!--        tr:nth-child(even) {-->
+<!--            background-color: #f9f9f9;-->
+<!--        }-->
+<!--        tr:hover {-->
+<!--            background-color: #f1f1f1;-->
+<!--        }-->
+<!--        td {-->
+<!--            color: #555;-->
+<!--        }-->
+<!--        td:last-child {-->
+<!--            border-right: none; /* Remove right border for the last td in each row */-->
+<!--        }-->
+<!--    </style>-->
+<!--</head>-->
+<!--<body>-->
+<!--    <h1>Subinventory Data</h1>-->
+<!--    <table>-->
+<!--        <tr>-->
+<!--            <th>Item Number</th>-->
+<!--            <th>Transaction Quantity</th>-->
+<!--            <th>Subinventory Code</th>-->
+<!--            <th>Transfer Subinventory</th>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--            <td>{{ post_response.ItemNumber }}</td>-->
+<!--            <td>{{ post_response.TransactionQuantity }}</td>-->
+<!--            <td>{{ post_response.SubinventoryCode }}</td>-->
+<!--            <td>{{ post_response.TransferSubinventory }}</td>-->
+<!--        </tr>-->
+<!--    </table>-->
+<!--</body>-->
+<!--</html>-->
 <!DOCTYPE html>
 <html>
 <head>
@@ -53,6 +128,51 @@
         td:last-child {
             border-right: none; /* Remove right border for the last td in each row */
         }
+        .message-box {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #e0ffe0;
+            color: #155724;
+            border: 2px solid #c3e6cb;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            font-size: 1.2em;
+        }
+        .message-box::before {
+            content: "\2714"; /* Check mark icon */
+            font-size: 1.5em;
+            color: #28a745;
+            margin-right: 10px;
+        }
+        .buttons {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        .buttons button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .buttons .done {
+            background-color: #28a745;
+            color: white;
+        }
+        .buttons .done:hover {
+            background-color: #218838;
+        }
+        .buttons .cancel {
+            background-color: #dc3545;
+            color: white;
+        }
+        .buttons .cancel:hover {
+            background-color: #c82333;
+        }
     </style>
 </head>
 <body>
@@ -71,5 +191,25 @@
             <td>{{ post_response.TransferSubinventory }}</td>
         </tr>
     </table>
+    <div class="message-box">
+        Successfully transferred onhand quantity {{post_response.TransactionQuantity}} for item {{ post_response.ItemNumber }} in organization MFG01 from subinventory
+        {{ post_response.SubinventoryCode }} to {{ post_response.TransferSubinventory }}.
+    </div>
+    <div class="buttons">
+        <button class="done" onclick="handleDone()">Done</button>
+        <button class="cancel" onclick="handleCancel()">Cancel</button>
+    </div>
+
+    <script>
+        function handleDone() {
+            alert("Done button clicked!");
+            // Add any other logic you need for the Done button here
+        }
+
+        function handleCancel() {
+            alert("Cancel button clicked!");
+            // Add any other logic you need for the Cancel button here
+        }
+    </script>
 </body>
 </html>

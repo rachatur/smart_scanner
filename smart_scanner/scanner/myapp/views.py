@@ -133,7 +133,6 @@ def fetch_inventory(request):
 
     return render(request, 'myapp/form.html')
 
-
 def generate_qr(request):
     data = 'MANGOMAZZA200ML'
 
