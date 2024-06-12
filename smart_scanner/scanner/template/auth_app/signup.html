@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Lite Integrator</title>
+     <link rel="stylesheet" type="text/css" href="{% static 'css/signup.css' %}">
+<!--    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">-->
+</head>
+
+<body>
+    <div class="signup-form">
+    <form method="post">
+        {% csrf_token %}
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="un" class="form-control" placeholder="Enter your username" required><br>
+        <h4>• Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.</h4>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="pw" class="form-control" placeholder="Enter your password" required><br>
+        <h4><p>	 •  Your password can’t be too similar to your other personal information.<br>
+	             •  Your password can’t be too similar to your other personal information.<br>
+                    •  Your password must contain at least 8 characters.<br>
+	             •  Your password can’t be a commonly used password.<br>
+                    •  Your password can’t be entirely numeric.</p></h4>
+        <label for="passwordC">Password confirmation:</label>
+        <input type="password" id="passwordC" name="pw" class="form-control" placeholder="Confirm your password" required><br>
+        <input type="submit" value="SignUp">
+    </form>
+</div>
+
+<!--    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>-->
+</body>
+
+</html>

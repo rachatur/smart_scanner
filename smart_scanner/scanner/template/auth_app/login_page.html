@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load crispy_forms_tags %}
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
+</head>
+<body>
+    <div class="form">
+        {% if error_message %}
+            <center>{{ error_message }}</center>
+        {% endif %}
+        <form method="post">
+            {% csrf_token %}
+            <label class="login-label">LogIn</label>
+            <label for="username">Username:</label><br>
+            <input type="text" id="username" name="un" class="form-control"/><br>
+            <label for="password">Password:</label><br>
+            <input type="password" id="password" name="pw" class="form-control"/><br>
+            <label><input type="checkbox" name="rememberme"> Remember me</label>
+            <input type="submit" value="LOG IN">
+            <a href="{% url 'signup_url' %}" class="sign-up">sign up</a>
+            <a href="#" id="forgotPassword">Forgot Password?</a>
+        </form>
+    </div>
+</body>
+</html>

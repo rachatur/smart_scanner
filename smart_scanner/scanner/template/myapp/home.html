@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Item Data</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f4f8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: #ffffff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 350px;
+            text-align: center;
+        }
+        .input-group {
+            margin-bottom: 20px;
+        }
+        .input-wrapper {
+            display: flex;
+            align-items: center;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        .input-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #007BFF;
+        }
+        .input-wrapper input {
+            padding: 10px;
+            border: none;
+            flex: 1;
+        }
+        .camera-icon {
+            width: 30px;
+            cursor: pointer;
+            padding: 5px;
+            background-color: #007BFF;
+            color: white;
+        }
+        .instructions {
+            font-style: italic;
+            color: #555;
+            margin-bottom: 20px;
+        }
+        .buttons {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+        }
+        .buttons button {
+            background-color: #007BFF;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        .buttons button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="input-group">
+            <label for="item">Item</label>
+            <div class="input-wrapper">
+                <input type="text" id="item" name="item_number" required>
+                <img src="https://img.icons8.com/ios-filled/50/ffffff/camera.png" alt="Camera" class="camera-icon" onclick="openCamera()">
+            </div>
+        </div>
+        <div class="instructions">
+            Enter the item number manually or click on the camera for scanning.
+        </div>
+        <div class="buttons">
+            <button onclick="cancel()">Cancel</button>
+            <button onclick="enter()">Enter</button>
+        </div>
+    </div>
+    <script>
+        function cancel() {
+            alert("Cancel button clicked");
+        }
+
+        function enter() {
+            const item = document.getElementById('item').value;
+            if (item.trim() === '') {
+                alert('Please enter an item');
+                return;
+            }
+
+            const fetchUrl = `/fetch_external_data?item_number=${encodeURIComponent(item)}`;
+            window.location.href = fetchUrl;
+        }
+
+        function openCamera() {
+            navigator.mediaDevices.getUserMedia({ video: true })
+                .then(stream => {
+                    const video = document.createElement('video');
+                    video.srcObject = stream;
+                    video.play();
+                    document.body.appendChild(video);
+
+                    video.style.position = 'fixed';
+                    video.style.top = '50%';
+                    video.style.left = '50%';
+                    video.style.transform = 'translate(-50%, -50%)';
+                    video.style.zIndex = '1000';
+                    video.style.border = '5px solid #007BFF';
+                    video.style.borderRadius = '10px';
+                    video.style.boxShadow = '0 0 10px rgba(0, 0, 0, 0.5)';
+
+                    const closeButton = document.createElement('button');
+                    closeButton.textContent = 'Close Camera';
+                    closeButton.style.position = 'fixed';
+                    closeButton.style.top = 'calc(50% + 200px)';
+                    closeButton.style.left = '50%';
+                    closeButton.style.transform = 'translateX(-50%)';
+                    closeButton.style.zIndex = '1001';
+                    closeButton.style.backgroundColor = '#007BFF';
+                    closeButton.style.color = 'white';
+                    closeButton.style.border = 'none';
+                    closeButton.style.padding = '10px 20px';
+                    closeButton.style.borderRadius = '5px';
+                    closeButton.style.cursor = 'pointer';
+
+                    closeButton.onclick = () => {
+                        video.pause();
+                        stream.getTracks().forEach(track => track.stop());
+                        document.body.removeChild(video);
+                        document.body.removeChild(closeButton);
+                    };
+
+                    document.body.appendChild(closeButton);
+                })
+                .catch(error => {
+                    console.error('Error accessing the camera:', error);
+                    alert('Error accessing the camera: ' + error.message);
+                });
+        }
+    </script>
+</body>
+</html>
