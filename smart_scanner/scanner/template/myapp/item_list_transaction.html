@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Item Transactions</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e0e0e0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: #f0f0f0;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 300px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .item-input {
+            margin-bottom: 20px;
+        }
+
+        .item-input label {
+            font-size: 16px;
+            margin: 0 0 10px 0;
+            color: #2e4053;
+        }
+
+        .item-input input {
+            width: 100%;
+            padding: 5px;
+            margin-top: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+            color: #2e4053;
+            background-color: #d5d8dc;
+        }
+
+        .transaction-list {
+            margin-bottom: 20px;
+        }
+
+        .transaction-list label {
+            font-size: 16px;
+            margin: 0 0 10px 0;
+            color: #2e4053;
+        }
+
+        .transaction-list select {
+            width: 100%;
+            padding: 5px; /* Adjusted padding for smaller size */
+            margin-top: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background-color: #d5d8dc;
+            font-size: 14px;
+            color: #2e4053;
+            cursor: pointer;
+        }
+
+        .actions {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .actions button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            font-size: 14px;
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .actions button#back {
+            background-color: #5dade2;
+        }
+
+        .actions button#back:hover {
+            background-color: #2e86c1;
+        }
+
+        .actions button#execute {
+            background-color: #48c9b0;
+        }
+
+        .actions button#execute:hover {
+            background-color: #1abc9c;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h2>Item Transactions</h2>
+        </header>
+        <div class="item-input">
+            <label for="item-code">Item</label>
+            <input type="text" id="item-code" placeholder="Enter Item Code">
+        </div>
+        <div class="transaction-list">
+            <label for="transactions">List of Transactions</label>
+            <select id="transactions">
+                <option value="sub_inventory_transfer">Sub inventory transfer</option>
+                <option value="material_transactions">Material transactions</option>
+                <option value="inter_organisation_transfer">Inter-Organisation transfer</option>
+                <option value="global_inventory_transfer">Global On Hand and Inventory transfer</option>
+            </select>
+        </div>
+        <div class="actions">
+            <button id="back">Back</button>
+            <button id="execute">Execute</button>
+        </div>
+    </div>
+    <script>
+    document.getElementById("execute").addEventListener("click", function() {
+        window.location.href = "item_page.html";
+    });
+</script>
+</script>
+</body>
+</html>
