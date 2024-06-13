@@ -48,7 +48,7 @@ def fetch_external_data(request):
         except requests.exceptions.RequestException as e:
             return JsonResponse({'error': str(e)}, status=500)
 
-        return render(request, 'myapp/information.html', {'get_response': get_data, 'post_response': post_data})
+        return render(request, 'myapp/item_list_transaction.html', {'get_response': get_data, 'post_response': post_data})
 
     else:
         return JsonResponse({'error': 'Method not allowed'}, status=405)
@@ -159,3 +159,6 @@ def generate_qr(request):
         'qr_code_url': 'images/first.png'
     }
     return render(request, 'myapp/qr.html', context)
+
+
+
