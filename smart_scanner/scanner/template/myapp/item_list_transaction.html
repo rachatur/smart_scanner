@@ -6,8 +6,8 @@
     <title>Item Transactions</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #e0e0e0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f6;
             margin: 0;
             padding: 0;
             display: flex;
@@ -17,90 +17,95 @@
         }
 
         .container {
-            background-color: #f0f0f0;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            width: 300px;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            width: 350px;
         }
 
         header {
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        header h2 {
+            color: #34495e;
         }
 
         .item-input {
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
 
         .item-input label {
             font-size: 16px;
-            margin: 0 0 10px 0;
-            color: #2e4053;
+            margin: 0;
+            color: #34495e;
         }
 
         .item-input input {
             width: 100%;
-            padding: 5px;
-            margin-top: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            font-size: 14px;
-            color: #2e4053;
-            background-color: #d5d8dc;
+            padding: 10px;
+            margin-top: 8px;
+            border: 1px solid #ccd1d1;
+            border-radius: 6px;
+            font-size: 15px;
+            color: #34495e;
+            background-color: #ecf0f1;
         }
 
         .transaction-list {
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
 
         .transaction-list label {
             font-size: 16px;
-            margin: 0 0 10px 0;
-            color: #2e4053;
+            margin: 0;
+            color: #34495e;
         }
 
         .transaction-list select {
             width: 100%;
-            padding: 5px; /* Adjusted padding for smaller size */
-            margin-top: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            background-color: #d5d8dc;
-            font-size: 14px;
-            color: #2e4053;
+            padding: 10px;
+            margin-top: 8px;
+            border: 1px solid #ccd1d1;
+            border-radius: 6px;
+            background-color: #ecf0f1;
+            font-size: 15px;
+            color: #34495e;
             cursor: pointer;
         }
 
         .actions {
             display: flex;
             justify-content: space-between;
+            margin-top: 20px;
         }
 
         .actions button {
-            padding: 10px 20px;
+            padding: 10px 25px;
             border: none;
-            border-radius: 4px;
-            font-size: 14px;
-            color: #fff;
+            border-radius: 6px;
+            font-size: 15px;
+            color: #ffffff;
             cursor: pointer;
             transition: background-color 0.3s;
         }
 
         .actions button#back {
-            background-color: #5dade2;
+            background-color: #3498db;
         }
 
         .actions button#back:hover {
-            background-color: #2e86c1;
+            background-color: #2980b9;
         }
 
         .actions button#execute {
-            background-color: #48c9b0;
+            background-color: #2ecc71;
         }
 
         .actions button#execute:hover {
-            background-color: #1abc9c;
+            background-color: #27ae60;
         }
     </style>
 </head>
@@ -110,8 +115,14 @@
             <h2>Item Transactions</h2>
         </header>
         <div class="item-input">
-            <label for="item-code">Item</label>
-            <input type="text" id="item-code" placeholder="Enter Item Code">
+            <label>Item : </label>
+            {% if get_response.items %}
+                {% for item in get_response.items %}
+                    {{ item.ItemNumber }}
+                {% endfor %}
+            {% else %}
+                <li class="no-items">No items found.</li>
+            {% endif %}
         </div>
         <div class="transaction-list">
             <label for="transactions">List of Transactions</label>
@@ -129,9 +140,8 @@
     </div>
     <script>
     document.getElementById("execute").addEventListener("click", function() {
-        window.location.href = "item_page.html";
+        window.location.href = "/item_page/";
     });
-</script>
-</script>
+    </script>
 </body>
 </html>

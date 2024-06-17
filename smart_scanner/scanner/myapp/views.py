@@ -58,6 +58,10 @@ def inventory(request):
     return render(request, 'myapp/item_page.html')
 
 
+def item_page(request):
+    return render(request, 'myapp/item_page.html')
+
+
 def fetch_inventory(request):
     if request.method == 'POST':
 
@@ -79,7 +83,7 @@ def fetch_inventory(request):
           "ItemNumber": item,
           "TransactionQuantity": quantity,
           "TransactionUnitOfMeasure": "Ea",
-          "TransactionDate": "2024-06-07 10:04:55.000000000",
+          "TransactionDate": "2024-06-13",
           "SubinventoryCode": subinventory_code,
           "TransferSubinventory": transfer_subinventory_code,
           "SourceCode": "RS",
@@ -89,24 +93,6 @@ def fetch_inventory(request):
           "TransactionReference": "MMJ100",
           "UseCurrentCostFlag": "true"
         }
-
-
-        #     {
-        #     "OrganizationName": "MFG01",
-        #     "TransactionTypeName": "Subinventory Transfer",
-        #     "ItemNumber": item,
-        #     "TransactionQuantity": quantity,
-        #     "TransactionUnitOfMeasure": "Ea",
-        #     "TransactionDate": "2024-06-07 10:04:55.000000000",
-        #     "SubinventoryCode": subinventory_code,
-        #     "TransferSubinventory": transfer_subinventory_code,
-        #     "SourceCode": "RS",
-        #     "SourceLineId": "1",
-        #     "SourceHeaderId": "1",
-        #     "TransactionMode": "1",
-        #     "TransactionReference": "MMJ100",
-        #     "UseCurrentCostFlag": "true"
-        # }
 
         try:
             response = requests.post(post_url, json=post_data, auth=auth)
@@ -132,7 +118,7 @@ def fetch_inventory(request):
         return render(request, 'myapp/subinventory_data.html', context)
 
     return render(request, 'myapp/form.html')
-
+    
 def generate_qr(request):
     data = 'MANGOMAZZA200ML'
 
