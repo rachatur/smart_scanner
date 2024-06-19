@@ -4,6 +4,7 @@ import qrcode
 from requests.auth import HTTPBasicAuth
 import requests
 from django.http import JsonResponse
+from datetime import datetime
 
 
 def home(request):
@@ -63,6 +64,8 @@ def item_page(request):
 
 
 def fetch_inventory(request):
+    today = datetime.today()
+
     if request.method == 'POST':
 
         item = request.POST.get('item')
@@ -83,7 +86,7 @@ def fetch_inventory(request):
           "ItemNumber": item,
           "TransactionQuantity": quantity,
           "TransactionUnitOfMeasure": "Ea",
-          "TransactionDate": "2024-06-13",
+          "TransactionDate": today.strftime('%Y-%m-%d'),
           "SubinventoryCode": subinventory_code,
           "TransferSubinventory": transfer_subinventory_code,
           "SourceCode": "RS",
@@ -118,7 +121,8 @@ def fetch_inventory(request):
         return render(request, 'myapp/subinventory_data.html', context)
 
     return render(request, 'myapp/form.html')
-    
+
+
 def generate_qr(request):
     data = 'MANGOMAZZA200ML'
 
@@ -145,6 +149,4 @@ def generate_qr(request):
         'qr_code_url': 'images/first.png'
     }
     return render(request, 'myapp/qr.html', context)
-
-
 
