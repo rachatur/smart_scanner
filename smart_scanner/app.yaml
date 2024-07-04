@@ -1,0 +1,37 @@
+runtime: python3.12.1  # Specify the Python runtime
+entrypoint: gunicorn -b :$PORT scanner.wsgi  # Entry point for your Django application
+
+instance_class: F2  # Instance class for resource allocation
+
+#env_variables:
+#  DJANGO_SECRET_KEY: "your_secret_key"
+#  DATABASE_URL: "mysql://user:password@/database?unix_socket=/cloudsql/your-instance-connection-name"
+
+automatic_scaling:
+  target_cpu_utilization: 0.65
+  min_instances: 1
+  max_instances: 5
+
+handlers:
+  - url: /static
+    static_dir: static
+
+  - url: /.*
+    script: auto
+
+error_handlers:
+  - file: error.html  # Custom error page
+
+# Optional settings:
+# health_check:
+#   enable_health_check: True
+#   check_interval_sec: 30
+#   timeout_sec: 4
+#   unhealthy_threshold: 2
+#   healthy_threshold: 2
+#   restart_threshold: 60
+
+# Optional: specify network settings
+# network:
+#   instance_tag: my-instance-tag
+#   name: default has context menu
