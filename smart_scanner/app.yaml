@@ -1,9 +1,9 @@
-runtime: python312  # Use the appropriate runtime
+runtime: python310  # Use the appropriate Python runtime version
 
 env_variables:
   DJANGO_SETTINGS_MODULE: "scanner.settings"
 
-entrypoint: gunicorn -b :$PORT scanner.scanner.wsgi
+entrypoint: gunicorn -b :$PORT scanner.wsgi
 
 handlers:
 - url: /static
@@ -12,6 +12,7 @@ handlers:
   script: auto
 
 
+# waitress-serve --port=127.0.0.1:8000/ scanner.wsgi:application
 
 #runtime: python312  # Specify the Python runtime
 #entrypoint: gunicorn -b :$PORT scanner.wsgi  # Entry point for your Django application
