@@ -3,7 +3,7 @@ runtime: python312  # Use the appropriate runtime
 env_variables:
   DJANGO_SETTINGS_MODULE: "scanner.settings"
 
-entrypoint: gunicorn -b :$PORT scanner.wsgi
+entrypoint: gunicorn -b :$PORT scanner.scanner.wsgi
 
 handlers:
 - url: /static
