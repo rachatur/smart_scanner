@@ -1,4 +1,4 @@
-runtime: python39  # Use the appropriate runtime
+runtime: python310  # Use the appropriate runtime
 
 env_variables:
   DJANGO_SETTINGS_MODULE: "scanner.settings"
