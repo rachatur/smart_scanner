@@ -24,7 +24,7 @@ pyyaml==6.0.1
 
 # Additional libraries
 datetime  # Part of Python standard library, no need to install
-os  # Part of Python standard library, no need to install
+# os  # Part of Python standard library, no need to install
 json  # Part of Python standard library, no need to install
 logging  # Part of Python standard library, no need to install
 
