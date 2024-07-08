@@ -1,4 +1,4 @@
-runtime: python3.12.1  # Specify the Python runtime
+runtime: python3121  # Specify the Python runtime
 entrypoint: gunicorn -b :$PORT scanner.wsgi  # Entry point for your Django application
 
 instance_class: F2  # Instance class for resource allocation
