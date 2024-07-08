@@ -12,10 +12,14 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 from pathlib import Path
 import os
+import google.cloud.logging
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+client = google.cloud.logging.Client()
+handler = CloudLoggingHandler(client)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
@@ -146,3 +150,29 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+        },
+        'cloud_logging': {
+            'level': 'DEBUG',
+            'class': 'google.cloud.logging.handlers.CloudLoggingHandler',
+            'client': client,
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console', 'cloud_logging'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+    },
+}
+
+# Apply the logging configuration
+logging.config.dictConfig(LOGGING)
