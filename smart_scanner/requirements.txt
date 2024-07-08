@@ -2,7 +2,7 @@
 Django==5.0.6
 
 # WSGI server
-# gunicorn==20.1.0
+gunicorn==21.2.0
 
 # Database
 # mysqlclient==2.1.0  # MySQL database adapter for Python
