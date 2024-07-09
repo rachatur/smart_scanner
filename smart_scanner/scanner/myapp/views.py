@@ -23,7 +23,7 @@ def fetch_external_data(request):
         get_params = {
             'q': f'ItemNumber={item_number};OrganizationCode=MFG01'
         }
-        auth = HTTPBasicAuth('CSP_COMMON_USER1', 'CSP@0524May')
+        auth = HTTPBasicAuth('CSP_COMMON_USER1', 'CSP@Jul240704')
 
         try:
             response = requests.get(get_url, params=get_params, auth=auth)
@@ -75,7 +75,7 @@ def fetch_inventory(request):
 
 
         username = os.getenv('CSP_USERNAME', 'CSP_COMMON_USER1')
-        password = os.getenv('CSP_PASSWORD', 'CSP@0524May')
+        password = os.getenv('CSP_PASSWORD', 'CSP@Jul240704')
         auth = HTTPBasicAuth(username, password)
 
         # POST API call details
