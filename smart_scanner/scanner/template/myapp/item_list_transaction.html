@@ -1,113 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+{% load static %}
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css"  href="{% static 'myapp/item_list_transaction.css' %}">
     <title>Item Transactions</title>
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f4f7f6;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
 
-        .container {
-            background-color: #ffffff;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            padding: 30px;
-            width: 350px;
-        }
-
-        header {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        header h2 {
-            color: #34495e;
-        }
-
-        .item-input {
-            margin-bottom: 25px;
-        }
-
-        .item-input label {
-            font-size: 16px;
-            margin: 0;
-            color: #34495e;
-        }
-
-        .item-input input {
-            width: 100%;
-            padding: 10px;
-            margin-top: 8px;
-            border: 1px solid #ccd1d1;
-            border-radius: 6px;
-            font-size: 15px;
-            color: #34495e;
-            background-color: #ecf0f1;
-        }
-
-        .transaction-list {
-            margin-bottom: 25px;
-        }
-
-        .transaction-list label {
-            font-size: 16px;
-            margin: 0;
-            color: #34495e;
-        }
-
-        .transaction-list select {
-            width: 100%;
-            padding: 10px;
-            margin-top: 8px;
-            border: 1px solid #ccd1d1;
-            border-radius: 6px;
-            background-color: #ecf0f1;
-            font-size: 15px;
-            color: #34495e;
-            cursor: pointer;
-        }
-
-        .actions {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 20px;
-        }
-
-        .actions button {
-            padding: 10px 25px;
-            border: none;
-            border-radius: 6px;
-            font-size: 15px;
-            color: #ffffff;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        .actions button#back {
-            background-color: #3498db;
-        }
-
-        .actions button#back:hover {
-            background-color: #2980b9;
-        }
-
-        .actions button#execute {
-            background-color: #2ecc71;
-        }
-
-        .actions button#execute:hover {
-            background-color: #27ae60;
-        }
-    </style>
 </head>
 <body>
     <div class="container">
@@ -134,7 +34,7 @@
             </select>
         </div>
         <div class="actions">
-            <button id="back">Back</button>
+            <button onclick="window.history.back()" id="back">Back</button>
             <button id="execute">Execute</button>
         </div>
     </div>
