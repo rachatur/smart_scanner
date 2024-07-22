@@ -1,6 +1,8 @@
+
 <!DOCTYPE html>
 <html lang="en">
 {% load static %}
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,22 +10,57 @@
     <title>Get Item Data</title>
     <script src="{% static 'script/home.js' %}" defer></script>
 </head>
+
 <body>
+<header>
+    <!--h3>Welcome smart scanner</h3-->
+    <nav>
+        <ul>
+           <li class="l1"><a href="#home">Home</a></li>
+                <li class="l1"><a href="#about">About</a></li>
+                <li class="l1"><a href="#services">Services</a></li>
+                <li class="l1"><a href="#contact">Contact</a></li>
+                <li class="l2"><a href="#login_page.html">Login</a></li>
+                <li class="l2"><a href="#logout.html">Logout</a></li>
+
+        </ul>
+    </nav>
+</header>
+
     <div class="container">
-        <div class="input-group">
-            <label for="item">Item</label>
-            <div class="input-wrapper">
-                <input type="text" id="item" name="item_number" required>
-                <img src="https://img.icons8.com/ios-filled/50/ffffff/camera.png" alt="Camera" class="camera-icon" onclick="openCamera()">
+        <form method="get" action="{% url 'fetch_external_data' %}">
+
+            <div class="input-group">
+                <label for="item">Item</label>
+                <div class="input-wrapper">
+
+                    <input list="items" id="item" name="item_number" required>
+                    <datalist id="items">
+                        {% for item in get_data.items %}
+                            <option value="{{ item.ItemNumber }}">{{ item.ItemNumber }}</option>
+                        {% endfor %}
+                    </datalist>
+
+                    <img src="https://img.icons8.com/ios-filled/50/ffffff/camera.png" alt="Camera" class="camera-icon" onclick="openCamera()">
+                </div>
             </div>
-        </div>
-        <div class="instructions">
-            Enter the item number manually or click on the camera for scanning.
-        </div>
-        <div class="buttons">
-            <button onclick="window.history.back()">Cancel</button>
-            <button onclick="enter()">Enter</button>
-        </div>
+
+            <div class="instructions">
+                Enter the item number manually or click on the camera for scanning.
+            </div>
+            <div class="buttons">
+                <button id="back">Back</button>
+                <button type="submit">Enter</button>
+            </div>
+        </form>
     </div>
+    <script>
+        document.getElementById("back").addEventListener("click", function() {
+            window.location.href = "/";
+        });
+    </script>
 </body>
+<footer>
+    <p>ethx@softcon.com © 2024 Your Website. All rights reserved.</p>
+</footer>
 </html>

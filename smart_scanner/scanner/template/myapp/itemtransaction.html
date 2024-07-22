@@ -5,6 +5,7 @@
     <title>Item Transactions</title>
     <link href="{% static 'myapp/itemtransaction.css' %}">
 </head>
+
 <body>
     <div class="container">
         <form method="post">
@@ -23,7 +24,9 @@
                 </select>
             </div>
             <div class="buttons">
-                <button type="button" onclick="window.history.back();">Back</button>
+<!--                <button type="button" onclick="window.history.back();">Back</button>-->
+<!--                <a href="{% url '' %}"><button type="button">Back</button></a>-->
+                <a href="javascript:history.go(-1)"><button type="button">Go Back</button></a>
                 <button type="submit">Execute</button>
             </div>
         </form>

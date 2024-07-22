@@ -2,6 +2,12 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout, authenticate, get_user_model
 from django.contrib import messages
 import re
+from django.shortcuts import render
+from requests.auth import HTTPBasicAuth
+import requests
+from django.http import JsonResponse
+# from .myapp import views
+
 
 def signup_view(request):
     User = get_user_model()
@@ -56,20 +62,36 @@ def signup_view(request):
     return render(request, template_name)
 
 
-
 def login_view(request):
+    # Get all items API
+    GET_URL = "https://edrx-dev1.fa.us2.oraclecloud.com/fscmRestApi/resources/11.13.18.05/itemsV2"
+    AUTH = HTTPBasicAuth('CSP_COMMON_USER1', 'CSP@Jul240704')
+
+    get_params = {
+        'q': 'OrganizationCode=MFG01'
+    }
+
+    try:
+        response = requests.get(GET_URL, params=get_params, auth=AUTH)
+        response.raise_for_status()
+        get_data = response.json()
+    except requests.exceptions.RequestException as e:
+        return JsonResponse({'error': str(e)}, status=500)
+
     if request.method == 'POST':
         un = request.POST.get('un')
         pw = request.POST.get('pw')
         user = authenticate(username=un, password=pw)
         if user:
             login(request, user)
-            return redirect('home_url')
+            request.session['get_data'] = get_data  # Store data in the session
+            return redirect('home')
         else:
             error_message = "Incorrect username or password. Please try again."
-            return render(request, 'auth_app/login_page.html', {'error_message': error_message})
+            return render(request, 'auth_app/login_page.html', {'error_message': error_message, 'get_data': get_data})
 
-    return render(request, 'auth_app/login_page.html', {})
+    return render(request, 'auth_app/login_page.html', {'get_data': get_data})
+
 
 def logout_view(request):
     if request.method == 'POST':
@@ -78,10 +100,6 @@ def logout_view(request):
     template_name = 'auth_app/logout.html'
     context = {}
     return render(request, template_name, context)
-
-
-
-
 
 
 

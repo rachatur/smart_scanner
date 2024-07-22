@@ -7,105 +7,139 @@ from django.http import JsonResponse
 from datetime import datetime
 
 
+GET_URL = "https://edrx-dev1.fa.us2.oraclecloud.com/fscmRestApi/resources/11.13.18.05/itemsV2"
+POST_URL = "https://edrx-dev1.fa.us2.oraclecloud.com/fscmRestApi/resources/latest/availableQuantityDetails"
+AUTH = HTTPBasicAuth('CSP_COMMON_USER1', 'CSP@Jul240704')
+
+
+def header_footer(request):
+    return render(request, 'myapp/hf.html')
+
+
 def home(request):
-    return render(request, 'myapp/home.html')
+    # Get data from session
+    get_data = request.session.get('get_data', None)
+
+    get_params = {
+        'q': 'OrganizationCode=MFG01'
+    }
+
+    try:
+        response = requests.get(GET_URL, params=get_params, auth=AUTH)
+        response.raise_for_status()
+        updated_get_data = response.json()
+        request.session['get_data'] = updated_get_data  # Update session data
+    except requests.exceptions.RequestException as e:
+        # Handle API request errors
+        updated_get_data = None
+
+    return render(request, 'myapp/home.html', {'get_data': get_data or updated_get_data})
 
 
 def fetch_external_data(request):
-
     if request.method == 'GET':
         item_number = request.GET.get('item_number')
         if not item_number:
             return JsonResponse({'error': 'Item number is required'}, status=400)
 
-        # GET API call
-        get_url = "https://edrx-dev1.fa.us2.oraclecloud.com/fscmRestApi/resources/11.13.18.05/itemsV2"
+        request.session['item_number'] = item_number
+
+        # GET API
         get_params = {
             'q': f'ItemNumber={item_number};OrganizationCode=MFG01'
         }
-        auth = HTTPBasicAuth('CSP_COMMON_USER1', 'CSP@Jul240704')
 
         try:
-            response = requests.get(get_url, params=get_params, auth=auth)
+            response = requests.get(GET_URL, params=get_params, auth=AUTH)
             response.raise_for_status()
-            get_data = response.json()
-
+            get_single_data = response.json()
         except requests.exceptions.RequestException as e:
             return JsonResponse({'error': str(e)}, status=500)
 
-        # POST API call
-        post_url = "https://edrx-dev1.fa.us2.oraclecloud.com/fscmRestApi/resources/latest/availableQuantityDetails"
+        # POST API
         post_data = {
             'ItemNumber': item_number,
             'OrganizationCode': 'MFG01'
         }
 
         try:
-            response = requests.post(post_url, json=post_data, auth=auth)
+            response = requests.post(POST_URL, json=post_data, auth=AUTH)
             response.raise_for_status()
-            post_data = response.json()
-            # print(post_data)
-
+            post_response = response.json()
         except requests.exceptions.RequestException as e:
             return JsonResponse({'error': str(e)}, status=500)
 
-        return render(request, 'myapp/item_list_transaction.html', {'get_response': get_data, 'post_response': post_data})
+        return render(request, 'myapp/item_list_transaction.html', {
+            'get_response': get_single_data,
+            'post_response': post_response,
+        })
 
     else:
         return JsonResponse({'error': 'Method not allowed'}, status=405)
 
 
-def inventory(request):
-    return render(request, 'myapp/item_page.html')
-
-
 def item_page(request):
-    return render(request, 'myapp/item_page.html')
+    item_number = request.session.get('item_number', '')
+
+    get_params = {
+        'q': f'ItemNumber={item_number};OrganizationCode=MFG01'
+    }
+
+    try:
+        response = requests.get(GET_URL, params=get_params, auth=AUTH)
+        response.raise_for_status()
+        get_single_data = response.json()
+        # Assuming get_single_data contains the necessary information to display subinventory options
+        # request.session['get_data'] = get_single_data  # Update session data
+        # print(get_single_data)  # Debugging line to verify the data
+    except requests.exceptions.RequestException as e:
+        return JsonResponse({'error': str(e)}, status=500)
+
+    return render(request, 'myapp/item_page.html', {
+        'item_number': item_number, 'get_single_data': get_single_data})
+        # , 'post_response': post_response})
 
 
 def fetch_inventory(request):
     today = datetime.today()
 
     if request.method == 'POST':
-
-        item = request.POST.get('item')
+        item_number = request.session.get('item_number', '')
+        item = item_number
         quantity = request.POST.get('quantity')
         subinventory_code = request.POST.get('subinventory_code')
         transfer_subinventory_code = request.POST.get('transfer_subinventory_code')
-
 
         username = os.getenv('CSP_USERNAME', 'CSP_COMMON_USER1')
         password = os.getenv('CSP_PASSWORD', 'CSP@Jul240704')
         auth = HTTPBasicAuth(username, password)
 
         # POST API call details
-        post_url = "https://edrx-dev1.fa.us2.oraclecloud.com/fscmRestApi/resources/11.13.18.05/inventoryStagedTransactions"
-        post_data ={
-          "OrganizationName": "OPM Inventory Organization 01",
-          "TransactionTypeName": "Subinventory Transfer",
-          "ItemNumber": item,
-          "TransactionQuantity": quantity,
-          "TransactionUnitOfMeasure": "Ea",
-          "TransactionDate": today.strftime('%Y-%m-%d'),
-          "SubinventoryCode": subinventory_code,
-          "TransferSubinventory": transfer_subinventory_code,
-          "SourceCode": "RS",
-          "SourceLineId": "1",
-          "SourceHeaderId": "1",
-          "TransactionMode": "1",
-          "TransactionReference": "MMJ100",
-          "UseCurrentCostFlag": "true"
+        post_url = ("https://edrx-dev1.fa.us2.oraclecloud.com/fscmRestApi/resources/11.13.18.05"
+                    "/inventoryStagedTransactions")
+        post_data = {
+            "OrganizationName": "OPM Inventory Organization 01",
+            "TransactionTypeName": "Subinventory Transfer",
+            "ItemNumber": item,
+            "TransactionQuantity": quantity,
+            "TransactionUnitOfMeasure": "Ea",
+            "TransactionDate": today.strftime('%Y-%m-%d'),
+            "SubinventoryCode": subinventory_code,
+            "TransferSubinventory": transfer_subinventory_code,
+            "SourceCode": "RS",
+            "SourceLineId": "1",
+            "SourceHeaderId": "1",
+            "TransactionMode": "1",
+            "TransactionReference": "MMJ100",
+            "UseCurrentCostFlag": "true"
         }
 
         try:
             response = requests.post(post_url, json=post_data, auth=auth)
             response.raise_for_status()
             post_response_data = response.json()
-
             print("POST request successful:", post_response_data)
-
         except requests.exceptions.RequestException as e:
-
             print("POST request failed:", e)
             return JsonResponse({'error': str(e)}, status=500)
 
@@ -114,7 +148,8 @@ def fetch_inventory(request):
                 'ItemNumber': post_response_data.get('ItemNumber', ''),
                 'TransactionQuantity': post_response_data.get('TransactionQuantity', ''),
                 'SubinventoryCode': post_response_data.get('SubinventoryCode', ''),
-                'TransferSubinventory': post_response_data.get('TransferSubinventory', '')
+                'TransferSubinventory': post_response_data.get('TransferSubinventory', ''),
+                'item_number': item_number
             }
         }
 
@@ -150,3 +185,30 @@ def generate_qr(request):
     }
     return render(request, 'myapp/qr.html', context)
 
+
+# def base(request):
+#     return render(request, 'base.html')
+
+
+# def inventory(request):
+#     return render(request, 'myapp/item_page.html')
+
+
+# def get_data(request):
+#     # Get all items API
+#     get_params = {
+#         'q': f'OrganizationCode=MFG01'
+#     }
+#
+#     try:
+#         response = requests.get(GET_URL, params=get_params, auth=AUTH)
+#         response.raise_for_status()
+#         get_data2 = response.json()
+#     except requests.exceptions.RequestException as e:
+#         return JsonResponse({'error': str(e)}, status=500)
+#     return render(request, 'myapp/home.html', {'get_data2': get_data2})
+
+
+
+
+# SUBINVENTORY_CODE

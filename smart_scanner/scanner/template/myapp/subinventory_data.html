@@ -27,20 +27,9 @@
         {{ post_response.SubinventoryCode }} to {{ post_response.TransferSubinventory }}.
     </div>
     <div class="buttons">
-        <button class="done" onclick="handleDone()">Done</button>
-        <button onclick="redirectToItemPage()"><a link="/item_page.html">Cancel</a></button>
+        <a href="{% url 'item_page' %}"><button type="button">Back</button></a>
     </div>
-    <script>
-        function handleDone() {
-            alert("Done button clicked!");
-            // Add any other logic you need for the Done button here
-        }
 
-        function redirectToItemPage() {
-<!--            window.location.href = "myapp/item_page.html";-->
-            alert("Cancel button clicked!");
-        }
-    </script>
 </body>
 </html>
 

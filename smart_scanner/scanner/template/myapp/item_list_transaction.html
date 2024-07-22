@@ -5,17 +5,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css"  href="{% static 'myapp/item_list_transaction.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'myapp/item_list_transaction.css' %}">
     <title>Item Transactions</title>
-
 </head>
 <body>
+
+
     <div class="container">
         <header>
             <h2>Item Transactions</h2>
         </header>
+
         <div class="item-input">
-            <label>Item : </label>
+            <label>Item: </label>
             {% if get_response.items %}
                 {% for item in get_response.items %}
                     {{ item.ItemNumber }}
@@ -24,6 +26,7 @@
                 <li class="no-items">No items found.</li>
             {% endif %}
         </div>
+
         <div class="transaction-list">
             <label for="transactions">List of Transactions</label>
             <select id="transactions">
@@ -33,15 +36,21 @@
                 <option value="global_inventory_transfer">Global On Hand and Inventory transfer</option>
             </select>
         </div>
+
         <div class="actions">
-            <button onclick="window.history.back()" id="back">Back</button>
-            <button id="execute">Execute</button>
+            <a href="{% url 'home' %}"><button type="button">Go Back</button></a>
+            {% if get_response.items %}
+                <button id="execute">Execute</button>
+            {% endif %}
         </div>
     </div>
     <script>
-    document.getElementById("execute").addEventListener("click", function() {
-        window.location.href = "/item_page/";
-    });
+        document.getElementById("execute").addEventListener("click", function() {
+            var selectedOption = document.getElementById("transactions").value;
+            if (selectedOption === "sub_inventory_transfer") {
+                window.location.href = "/item_page/";
+            }
+        });
     </script>
 </body>
 </html>
