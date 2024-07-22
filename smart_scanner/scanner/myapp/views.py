@@ -186,8 +186,8 @@ def generate_qr(request):
     return render(request, 'myapp/qr.html', context)
 
 
-# def base(request):
-#     return render(request, 'base.html')
+def base(request):
+    return render(request, 'base.html')
 
 
 # def inventory(request):

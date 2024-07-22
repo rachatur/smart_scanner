@@ -1,14 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+{% extends "base.html" %}
 {% load static %}
+
+
+{% block title %}
+    <title>Inventory Form</title>
+{% endblock %}
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="{% static 'myapp/item_page.css' %}">
-    <title>Inventory Form</title>
-</head>
-<body>
 
+</head>
+
+{% block content %}
+    <link rel="stylesheet" type="text/css" href="{% static 'myapp/item_page.css' %}">
 <form action="{% url 'fetch_inventory' %}" method="post">
     {% csrf_token %}
     <h2>Inventory Form</h2>
@@ -37,6 +44,5 @@
 
     <input type="submit" value="Submit">
 </form>
-
-</body>
+{% endblock %}
 </html>

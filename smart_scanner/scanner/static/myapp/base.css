@@ -1,0 +1,87 @@
+/* General Styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f0f4f8;
+    margin: 0;
+    padding: 0;
+    padding-top: 70px; /* Ensures content isn't hidden behind the fixed header */
+}
+
+/* Header Styles */
+header {
+    background-color: #ffffff; /* White background for the header */
+    color: #333333; /* Dark text color for better readability */
+    padding: 1em 2em; /* Added horizontal padding */
+    text-align: center;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    border-bottom: 1px solid #e1e1e1; /* Light border to define the header's bottom edge */
+}
+
+/* Navigation Styles */
+header nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+header nav ul li {
+    display: inline;
+    margin: 0 20px; /* Increased margin for better spacing between links */
+}
+
+header nav ul li a {
+    color: #333333; /* Dark color for navigation links */
+    text-decoration: none;
+    font-weight: bold; /* Bold text for emphasis */
+    transition: color 0.3s ease; /* Smooth transition effect for hover */
+}
+
+header nav ul li a:hover {
+    color: #007bff; /* Change color on hover for visual feedback */
+}
+
+/* Footer Styles */
+footer {
+    background-color: #333333; /* Dark background for the footer */
+    color: #ffffff; /* White text color for contrast */
+    text-align: center;
+    padding: 1em 2em; /* Added horizontal padding */
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    border-top: 1px solid #444444; /* Slightly lighter border to define the footer's top edge */
+}
+
+/* Additional Styles for Flexibility */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1em;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    padding: 0.5em 0;
+    color: #333333; /* Dark color for headings */
+}
+
+p {
+    margin: 0 0 1em;
+    line-height: 1.6;
+    color: #666666; /* Subtle text color for paragraphs */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    header nav ul li {
+        display: block;
+        margin: 10px 0;
+    }
+
+    header nav ul li a {
+        font-size: 1.1em; /* Slightly larger font size for smaller screens */
+    }
+}

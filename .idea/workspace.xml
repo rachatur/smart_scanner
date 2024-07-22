@@ -5,20 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="930420d0-d9a5-4b94-a1ed-79cfb2e84bc2" name="Changes" comment="commit">
-      <change afterPath="$PROJECT_DIR$/smart_scanner/scanner/template/base.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/smart_scanner/scanner/template/myapp/hf.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/smart_scanner/scanner/static/myapp/base.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/smart_scanner/scanner/auth_app/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/smart_scanner/scanner/auth_app/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/smart_scanner/scanner/auth_app/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/smart_scanner/scanner/auth_app/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/smart_scanner/scanner/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/smart_scanner/scanner/db.sqlite3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/smart_scanner/scanner/myapp/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/smart_scanner/scanner/myapp/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/smart_scanner/scanner/myapp/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/smart_scanner/scanner/myapp/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/smart_scanner/scanner/static/myapp/home.css" beforeDir="false" afterPath="$PROJECT_DIR$/smart_scanner/scanner/static/myapp/home.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/smart_scanner/scanner/static/myapp/item_list_transaction.css" beforeDir="false" afterPath="$PROJECT_DIR$/smart_scanner/scanner/static/myapp/item_list_transaction.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/smart_scanner/scanner/template/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/smart_scanner/scanner/template/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/smart_scanner/scanner/template/myapp/hf.html" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/smart_scanner/scanner/template/myapp/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/smart_scanner/scanner/template/myapp/home.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/smart_scanner/scanner/template/myapp/item_list_transaction.html" beforeDir="false" afterPath="$PROJECT_DIR$/smart_scanner/scanner/template/myapp/item_list_transaction.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/smart_scanner/scanner/template/myapp/item_page.html" beforeDir="false" afterPath="$PROJECT_DIR$/smart_scanner/scanner/template/myapp/item_page.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/smart_scanner/scanner/template/myapp/itemtransaction.html" beforeDir="false" afterPath="$PROJECT_DIR$/smart_scanner/scanner/template/myapp/itemtransaction.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/smart_scanner/scanner/template/myapp/subinventory_data.html" beforeDir="false" afterPath="$PROJECT_DIR$/smart_scanner/scanner/template/myapp/subinventory_data.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -50,14 +48,14 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "DefaultHtmlFileTemplate": "HTML File",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "D:/Sanket/Python/Python Projects"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Sanket/Python/Python Projects&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\Sanket\smart_scanner\smart_scanner\scanner\template" />
@@ -218,8 +216,27 @@
       <option name="project" value="LOCAL" />
       <updated>1720941683133</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="commit">
+      <option name="closed" value="true" />
+      <created>1721631927846</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1721631927846</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="commit" />

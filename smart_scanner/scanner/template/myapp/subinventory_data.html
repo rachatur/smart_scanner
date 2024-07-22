@@ -1,12 +1,20 @@
 <!DOCTYPE html>
 <html>
+{% extends 'base.html' %}
 {% load static %}
-<head>
-    <link rel="stylesheet" style="text/css" href="{% static 'myapp/subinventory_data.css' %}">
+
+{% block title %}
     <title>Subinventory Data</title>
+{% endblock %}
+
+<head>
+
+
 
 </head>
-<body>
+
+{% block content %}
+    <link rel="stylesheet" style="text/css" href="{% static 'myapp/subinventory_data.css' %}">
     <h1>Subinventory Data</h1>
     <table>
         <tr>
@@ -29,7 +37,6 @@
     <div class="buttons">
         <a href="{% url 'item_page' %}"><button type="button">Back</button></a>
     </div>
-
-</body>
+{% endblock %}
 </html>
 

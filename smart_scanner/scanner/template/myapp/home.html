@@ -1,50 +1,36 @@
-
 <!DOCTYPE html>
 <html lang="en">
+{% extends "base.html" %}
 {% load static %}
+
+
+{% block title %}
+    <title>Get Item Data</title>
+{% endblock %}
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="{% static 'myapp/home.css' %}">
-    <title>Get Item Data</title>
-    <script src="{% static 'script/home.js' %}" defer></script>
 </head>
 
-<body>
-<header>
-    <!--h3>Welcome smart scanner</h3-->
-    <nav>
-        <ul>
-           <li class="l1"><a href="#home">Home</a></li>
-                <li class="l1"><a href="#about">About</a></li>
-                <li class="l1"><a href="#services">Services</a></li>
-                <li class="l1"><a href="#contact">Contact</a></li>
-                <li class="l2"><a href="#login_page.html">Login</a></li>
-                <li class="l2"><a href="#logout.html">Logout</a></li>
-
-        </ul>
-    </nav>
-</header>
+{% block content %}
+    <link rel="stylesheet" type="text/css" href="{% static 'myapp/home.css' %}">
+    <script src="{% static 'script/home.js' %}" defer></script>
 
     <div class="container">
         <form method="get" action="{% url 'fetch_external_data' %}">
-
             <div class="input-group">
                 <label for="item">Item</label>
                 <div class="input-wrapper">
-
                     <input list="items" id="item" name="item_number" required>
                     <datalist id="items">
                         {% for item in get_data.items %}
                             <option value="{{ item.ItemNumber }}">{{ item.ItemNumber }}</option>
                         {% endfor %}
                     </datalist>
-
                     <img src="https://img.icons8.com/ios-filled/50/ffffff/camera.png" alt="Camera" class="camera-icon" onclick="openCamera()">
                 </div>
             </div>
-
             <div class="instructions">
                 Enter the item number manually or click on the camera for scanning.
             </div>
@@ -59,8 +45,5 @@
             window.location.href = "/";
         });
     </script>
-</body>
-<footer>
-    <p>ethx@softcon.com © 2024 Your Website. All rights reserved.</p>
-</footer>
+{% endblock %}
 </html>
