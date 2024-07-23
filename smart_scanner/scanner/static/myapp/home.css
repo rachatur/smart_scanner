@@ -1,16 +1,18 @@
+/* home.css */
+
 /* Styling for the Content Block */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #f0f4f8;
     margin: 0;
-    padding: 0;
+    padding: 50px 0;
 }
 
 /* Container */
 .container {
     max-width: 800px;
-    margin: 0 auto;
-    padding: 2em;
+    margin: 20px auto 0; /* Added top margin */
+    padding: 10em;
     background-color: #ffffff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
@@ -98,4 +100,40 @@ button#back {
 
 button#back:hover {
     background-color: #5a6268;
+}
+
+/* Specific Styles for Item List Transaction Page */
+.item-input, .transaction-list, .actions {
+    margin-bottom: 20px;
+}
+
+.item-input label, .transaction-list label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.no-items {
+    color: red;
+    font-weight: bold;
+}
+
+select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+    font-size: 16px;
+    appearance: none;
+}
+
+.actions a {
+    text-decoration: none;
+    margin-right: 10px;
+}
+
+.actions button {
+    display: inline-block;
+    margin-right: 10px;
 }

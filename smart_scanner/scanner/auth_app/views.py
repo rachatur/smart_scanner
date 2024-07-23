@@ -102,4 +102,5 @@ def logout_view(request):
     return render(request, template_name, context)
 
 
-
+def dashboard_view(request):
+    return render(request, 'auth_app/dashboard.html')

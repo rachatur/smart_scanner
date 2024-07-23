@@ -1,40 +1,29 @@
+/* item_list_transaction.css */
+
 body {
     font-family: Arial, sans-serif;
     background-color: #f8f9fa;
     margin: 0;
-    padding: 0;
+    padding: 50px 0;
 }
 
 .container {
-    margin-top: 60px; /* Adjust based on your navbar height */
     max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
+    margin: 50px auto;
     padding: 20px;
-    background-color: #ffffff;
+    background-color: #fff;
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-.header h2 {
-    font-size: 24px;
-    color: #333;
-    text-align: center;
-    margin-bottom: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .item-input, .transaction-list, .actions {
-    margin: 20px 0;
-    text-align: center;
+    margin-bottom: 20px;
 }
 
-.item {
-    display: inline-block;
-    margin-right: 10px;
-    padding: 5px 10px;
-    background-color: #e9ecef;
-    border-radius: 4px;
-    font-size: 14px;
+.item-input label, .transaction-list label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 8px;
 }
 
 .no-items {
@@ -42,26 +31,23 @@ body {
     font-weight: bold;
 }
 
-.transaction-list label, .item-input label {
-    font-weight: bold;
-    margin-right: 10px;
-}
-
 select {
-    padding: 5px 10px;
-    border-radius: 4px;
+    width: 100%;
+    padding: 10px;
     border: 1px solid #ccc;
-    font-size: 14px;
+    border-radius: 4px;
+    background-color: #fff;
+    font-size: 16px;
+    appearance: none;
 }
 
 button {
     padding: 10px 20px;
-    margin: 5px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #007bff;
     border: none;
     border-radius: 4px;
-    background-color: #007bff;
-    color: white;
-    font-size: 14px;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
@@ -70,10 +56,151 @@ button:hover {
     background-color: #0056b3;
 }
 
-button#back {
+.actions a {
+    text-decoration: none;
+    margin-right: 10px;
+}
+
+.actions button {
+    display: inline-block;
+    margin-right: 10px;
+}
+/* item_list_transaction.css */
+
+/* Styling for the Content Block */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f0f4f8;
+    margin: 0;
+    padding: 50px 0;
+}
+
+/* Container */
+.container {
+    max-width: 800px;
+    margin: 20px auto 0; /* Added top margin */
+    padding: 5em;
+    background-color: #ffffff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Form Styling */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Input Group */
+.input-group {
+    margin-bottom: 1.5em;
+}
+
+label {
+    font-size: 1.1em;
+    color: #333333;
+    display: block;
+    margin-bottom: 0.5em;
+}
+
+.input-wrapper {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+input {
+    width: 100%;
+    padding: 0.75em;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1em;
+}
+
+.camera-icon {
+    position: absolute;
+    right: 10px;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+}
+
+.camera-icon:hover {
+    opacity: 0.8;
+}
+
+/* Instructions */
+.instructions {
+    font-size: 0.9em;
+    color: #666666;
+    margin-bottom: 1em;
+}
+
+/* Buttons */
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 1em;
+}
+
+button {
     background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 0.75em 1.5em;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+button#back {
+    background-color: #6c757d;
 }
 
 button#back:hover {
-    background-color: #0056b3;
+    background-color: #5a6268;
+}
+
+/* Specific Styles for Item List Transaction Page */
+.item-input, .transaction-list, .actions {
+    margin-bottom: 20px;
+}
+
+.item-input label, .transaction-list label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.no-items {
+    color: red;
+    font-weight: bold;
+}
+
+select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+    font-size: 16px;
+    appearance: none;
+}
+
+.actions a {
+    text-decoration: none;
+    margin-right: 10px;
+}
+
+.actions button {
+    display: inline-block;
+    margin-right: 10px;
 }

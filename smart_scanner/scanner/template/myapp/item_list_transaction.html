@@ -8,18 +8,11 @@
     <title>Item Transactions</title>
 {% endblock %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
 
 {% block content %}
-<link rel="stylesheet" type="text/css" href="{% static 'myapp/item_list_transaction.css' %}">
-    <div class="container">
-        <header>
-            <h2>Item Transactions</h2>
-        </header>
+    <link rel="stylesheet" type="text/css" href="{% static 'myapp/item_list_transaction.css' %}">
 
+    <div class="container">
         <div class="item-input">
             <label>Item: </label>
             {% if get_response.items %}
