@@ -11,9 +11,9 @@ GET_URL = "https://edrx-dev1.fa.us2.oraclecloud.com/fscmRestApi/resources/11.13.
 POST_URL = "https://edrx-dev1.fa.us2.oraclecloud.com/fscmRestApi/resources/latest/availableQuantityDetails"
 AUTH = HTTPBasicAuth('CSP_COMMON_USER1', 'CSP@Jul240704')
 
-
-def header_footer(request):
-    return render(request, 'myapp/hf.html')
+#
+# def header_footer(request):
+#     return render(request, 'myapp/hf.html')
 
 
 def home(request):
@@ -209,6 +209,3 @@ def base(request):
 #     return render(request, 'myapp/home.html', {'get_data2': get_data2})
 
 
-
-
-# SUBINVENTORY_CODE

@@ -5,14 +5,14 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #f0f4f8;
     margin: 0;
-    padding: 50px 0;
+    padding: 10px 0;
 }
 
 /* Container */
 .container {
     max-width: 800px;
     margin: 20px auto 0; /* Added top margin */
-    padding: 10em;
+    padding: 2em;
     background-color: #ffffff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
