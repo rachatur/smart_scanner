@@ -11,12 +11,12 @@ body {
 /* Container */
 .container {
     max-width: 800px;
-    margin: 20px auto 0; /* Added top margin */
+    margin: 120px auto ; /* Increased top margin */
     padding: 2em;
     background-color: #ffffff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
-    display: flex;
+    display: block;
     flex-direction: column;
 }
 
