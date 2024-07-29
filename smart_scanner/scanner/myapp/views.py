@@ -5,17 +5,19 @@ from requests.auth import HTTPBasicAuth
 import requests
 from django.http import JsonResponse
 from datetime import datetime
+from . import models
 
 
 GET_URL = "https://edrx-dev1.fa.us2.oraclecloud.com/fscmRestApi/resources/11.13.18.05/itemsV2"
 POST_URL = "https://edrx-dev1.fa.us2.oraclecloud.com/fscmRestApi/resources/latest/availableQuantityDetails"
 AUTH = HTTPBasicAuth('CSP_COMMON_USER1', 'CSP@Jul240704')
 
-#
-# def header_footer(request):
-#     return render(request, 'myapp/hf.html')
 
+def item_list(request):
+    items_model = models.Item.objects.all()
+    return render(request, 'myapp/item_list.html', {'items_model': items_model})
 
+ 
 def home(request):
     # Get data from session
     get_data = request.session.get('get_data', None)

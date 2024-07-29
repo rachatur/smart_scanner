@@ -1,0 +1,16 @@
+<!-- myapp/templates/myapp/item_list.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Item List</title>
+</head>
+
+<body>
+    <h1>Item List</h1>
+    <ul>
+        {% for item in items_model %}
+            <li>{{ item.item_num }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
